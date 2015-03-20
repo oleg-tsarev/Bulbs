@@ -1,5 +1,5 @@
 library(shiny)
-
+require(markdown)
 shinyUI(
     fluidPage(
         sidebarLayout(
@@ -49,12 +49,21 @@ shinyUI(
             )
             ,mainPanel(
                 h2("SAVINGS CALCULATOR FOR COMPACT FLUORESCENT LAMPS (CFL)")
-                ,h4(paste("YOU ARE SAVING MONEY STARTING FROM DAY #"))
-                ,h4(textOutput("oSavingStartDate"))
-                ,h4("INCADESCENT AND CFL COSTS DEVELOPMENT:")
-                ,htmlOutput("Chart1")
-                ,h4("SAVINGS DEVELOPMENT IN CASE OF CFL USAGE:")
-                ,htmlOutput("Chart2")
+                ,tabsetPanel(
+                    tabPanel(
+                        h4("README")
+                        ,includeMarkdown("README.md")
+                        )
+                    ,tabPanel(
+                        h4("RESULT")
+                        ,h4(paste("YOU ARE SAVING MONEY STARTING FROM DAY #"))
+                        ,h4(textOutput("oSavingStartDate"))
+                        ,h4("INCADESCENT AND CFL COSTS DEVELOPMENT:")
+                        ,htmlOutput("Chart1")
+                        ,h4("SAVINGS DEVELOPMENT IN CASE OF CFL USAGE:")
+                        ,htmlOutput("Chart2")
+                    )
+                )
             )
         )
     )
